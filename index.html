@@ -5,20 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Demetrius Wilson | IT Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }
+    window.onload = () => {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    }
+  </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <header class="bg-gray-900 text-white py-6 text-center">
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
+
+  <header class="bg-gray-900 dark:bg-gray-800 text-white py-6 text-center">
     <h1 class="text-4xl font-bold">Demetrius Wilson</h1>
     <p class="text-lg mt-2">Aspiring IT Professional | Web Development | Tech Support | AI Enthusiast</p>
     <nav class="mt-4">
       <a href="#about" class="mx-4 text-blue-300 hover:text-white">About</a>
       <a href="#projects" class="mx-4 text-blue-300 hover:text-white">Projects</a>
+      <a href="#resume" class="mx-4 text-blue-300 hover:text-white">Resume</a>
       <a href="#contact" class="mx-4 text-blue-300 hover:text-white">Contact</a>
     </nav>
+    <button onclick="toggleTheme()" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+      Toggle Dark Mode
+    </button>
   </header>
 
   <main class="max-w-4xl mx-auto px-4 py-8">
-    <section id="about" class="mb-10">
+    <section id="about" class="mb-12">
       <h2 class="text-2xl font-semibold mb-4">About Me</h2>
       <p>
         I'm currently pursuing an Associate's Degree in Information Technology from Southern New Hampshire University.
@@ -27,41 +43,96 @@
       </p>
     </section>
 
-    <section id="projects" class="mb-10">
+    <section id="projects" class="mb-16">
       <h2 class="text-2xl font-semibold mb-6">Projects</h2>
       <div class="grid gap-6 md:grid-cols-2">
-        <div class="bg-white shadow-md rounded-lg p-4">
+        <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4">
           <h3 class="text-xl font-bold mb-2">Personal Portfolio Website</h3>
           <p>Designed and built this responsive website using HTML and Tailwind CSS. Hosted on GitHub Pages to showcase my projects and skills.</p>
         </div>
-        <div class="bg-white shadow-md rounded-lg p-4">
+        <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4">
           <h3 class="text-xl font-bold mb-2">Python Calculator</h3>
           <p>Created a simple Python-based calculator to perform basic arithmetic operations and error handling.</p>
         </div>
-        <div class="bg-white shadow-md rounded-lg p-4">
+        <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4">
           <h3 class="text-xl font-bold mb-2">Network Troubleshooting Simulation</h3>
           <p>Simulated troubleshooting tasks using command line and networking tools from coursework at SNHU.</p>
         </div>
       </div>
-      <div class="mt-8 text-center">
-        <a href="Demetrius_Wilson_IT_Intern_Resume_Updated.docx" download class="inline-block px-6 py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition">
-          📄 Download My Resume
+    </section>
+
+    <!-- Resume Section with Tabs -->
+    <section id="resume" class="mb-16">
+      <h2 class="text-3xl font-bold text-center mb-8">Resume</h2>
+
+      <!-- Tab Buttons -->
+      <div class="flex justify-center space-x-4 mb-6">
+        <button onclick="showTab('preview')" class="tab-btn bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">📄 Preview</button>
+        <button onclick="showTab('fullscreen')" class="tab-btn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">🔍 View Fullscreen</button>
+        <button onclick="showTab('download')" class="tab-btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">⬇️ Download</button>
+      </div>
+
+      <!-- Tab Content -->
+      <div id="tab-preview" class="tab-content block">
+        <div class="border rounded shadow-lg w-full h-96 overflow-hidden">
+          <iframe src="Demetrius-Wilson.pdf.pdf" width="100%" height="100%" class="rounded">
+            Your browser doesn't support PDF preview.
+          </iframe>
+        </div>
+      </div>
+
+      <div id="tab-fullscreen" class="tab-content hidden text-center">
+        <a href="Demetrius-Wilson.pdf.pdf" target="_blank" class="inline-block mt-4 px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+          🔍 Open Resume in Fullscreen
+        </a>
+      </div>
+
+      <div id="tab-download" class="tab-content hidden text-center">
+        <a href="Demetrius-Wilson.pdf.pdf" download class="inline-block mt-4 px-6 py-3 bg-green-600 text-white rounded hover:bg-green-700 transition">
+          📥 Click to Download Resume
         </a>
       </div>
     </section>
 
     <section id="contact">
-      <h2 class="text-2xl font-semibold mb-4">Contact</h2>
-      <ul class="list-disc list-inside">
-        <li>Email: <a href="mailto:deewilson55046@gmail.com" class="text-blue-600 hover:underline">deewilson55046@gmail.com</a></li>
-        <li>Phone: (334) 784-2486</li>
-        <li>Location: Dothan, AL</li>
-      </ul>
-    </section>
+  <h2 class="text-2xl font-semibold mb-4">Contact</h2>
+  <ul class="list-disc list-inside mb-4">
+    <li>Email: <a href="mailto:deewilson55046@gmail.com" class="text-blue-400 hover:underline">deewilson55046@gmail.com</a></li>
+    <li>Phone: (334) 784-2486</li>
+    <li>Location: Dothan, AL</li>
+  </ul>
+
+  <div class="flex items-center space-x-6 mt-4">
+    <!-- GitHub -->
+    <a href="https://github.com/DeeDee9991" target="_blank" class="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 0a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.7-1.2-1.7-1-.6.1-.6.1-.6 1.1.1 1.7 1.2 1.7 1.2 1 .1 1.5-.8 1.8-1.2.2-.7.5-1 .8-1.2-2.6-.3-5.4-1.3-5.4-5.6 0-1.2.4-2.1 1-2.8-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 2.8 1a9.7 9.7 0 015.1 0c1.9-1.3 2.8-1 2.8-1 .6 1.5.2 2.6.1 2.9.6.7 1 1.6 1 2.8 0 4.3-2.8 5.3-5.4 5.6.5.4.9 1.2.9 2.4v3.5c0 .3.2.7.8.6A12 12 0 0012 0z"/>
+      </svg>
+      <span>GitHub</span>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/deems99" target="_blank" class="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M19 0h-14c-2.8 0-5 2.2-5 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5v-14c0-2.8-2.2-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.3c-1 0-1.7-.8-1.7-1.7S5.5 5.3 6.5 5.3s1.7.8 1.7 1.7c0 .9-.8 1.7-1.7 1.7zm13.5 10.3h-3v-4.5c0-1.1-.5-2-1.7-2s-1.8.8-1.8 2V19h-3v-9h2.8v1.2c.4-.8 1.5-1.5 2.7-1.5 2.1 0 3 1.3 3 4v5.3z"/>
+      </svg>
+      <span>LinkedIn</span>
+    </a>
+  </div>
+</section>
+
   </main>
 
-  <footer class="bg-gray-900 text-white text-center py-4">
+  <footer class="bg-gray-900 dark:bg-gray-800 text-white text-center py-4">
     <p>&copy; 2025 Demetrius Wilson. All rights reserved.</p>
   </footer>
+
+  <!-- Tab Toggle Script -->
+  <script>
+    function showTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelector(`#tab-${tab}`).classList.remove('hidden');
+    }
+  </script>
 </body>
 </html>
